@@ -295,7 +295,7 @@ func buildServer(ctx context.Context, env config, healthState *health.State, rp 
 	tracingEnabled := env.TracingConfigBackend != tracingconfig.None
 	firstByteTimeout := time.Duration(env.RevisionTimeoutSeconds) * time.Second
 	// hardcoded to always disable idle timeout for now, will expose this later
-	idleTimeout := -1 * time.Second
+	var idleTimeout time.Duration
 
 	// Create queue handler chain.
 	// Note: innermost handlers are specified first, ie. the last handler in the chain will be executed first.
